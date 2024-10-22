@@ -28,19 +28,33 @@ def tick():
 			elif key in ["k", "q", "c", "s", "h", "u", " ", "p", "r"]:
 				update_GUI_func(key)
 
+def read_save_file_to_dict():
+	save_data = {}
+	with open('mrmine_save.txt', 'r') as file:
+		for line in file:
+			line = line.strip()
+			if '=' in line:  # Ensuring there's a key-value split
+				key, value = line.split('=', 1)  # Split on first '=' to handle complex values
+				try:
+					# Attempt to evaluate the value for correct data types
+					save_data[key] = eval(value)
+				except:
+								# If eval fails, it's likely a string or ambiguous format
+					save_data[key] = value
+	return save_data
+
 def mrmine_start_game():
 	os.system('clear')
 	update_GUI()
 	try:
-		
-
+		read_save_file_to_dict()
+	except Exception:
+		print("Error while loading save file.")
 	try:
 		listener_thread = Thread(target=keypress_listener)
 		listener_thread.daemon = True
 		listener_thread.start()
-
 		while True:
 			tick()
-
 	except KeyboardInterrupt:
 		print("Game interrupted, exiting...")
