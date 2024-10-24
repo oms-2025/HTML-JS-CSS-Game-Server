@@ -46,6 +46,21 @@ icons={
 ==============="""
 }
 
+def read_save():
+	save_data = {}
+	with open('mrmine_save.txt', 'r') as file:
+		for line in file:
+			line = line.strip()
+			if '=' in line:  # Ensuring there's a key-value split
+				key, value = line.split('=', 1)  # Split on first '=' to handle complex values
+				try:
+					# Attempt to evaluate the value for correct data types
+					save_data[key] = eval(value)
+				except Exception:
+								# If eval fails, it's likely a string or ambiguous format
+					save_data[key] = value
+	return save_data
+
 def update_GUI_func(key):
 	if key=='q':
 		os.system('clear')
