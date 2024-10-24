@@ -1,7 +1,7 @@
 from threading import Thread
 from mrmine_keypress_detector import detect_keypress_nonblocking
 from mrmine_gui import update_GUI, scroll, update_GUI_func
-import os
+import os, time
 
 # Make the relay of keys more accessible
 key_pressed = None
@@ -28,7 +28,7 @@ def tick():
 			elif key in ["k", "q", "c", "s", "h", "u", " ", "p", "r"]:
 				update_GUI_func(key)
 
-def read_save_file_to_dict():
+def read_save():
 	save_data = {}
 	with open('mrmine_save.txt', 'r') as file:
 		for line in file:
@@ -38,23 +38,31 @@ def read_save_file_to_dict():
 				try:
 					# Attempt to evaluate the value for correct data types
 					save_data[key] = eval(value)
-				except:
+				except Exception:
 								# If eval fails, it's likely a string or ambiguous format
 					save_data[key] = value
 	return save_data
 
 def mrmine_start_game():
 	os.system('clear')
-	update_GUI()
 	try:
-		read_save_file_to_dict()
+		save_data=read_save()
 	except Exception:
 		print("Error while loading save file.")
+		save_data=None
+		print("Exiting the game...")
+		exit()
+	if save_data['BROADCAST_TYPE'] != "none":
+		print("Message from devs: "+save_data['BROADCAST_MESSAGE'])
+		time.sleep(1)
+		os.system('clear')
 	try:
 		listener_thread = Thread(target=keypress_listener)
 		listener_thread.daemon = True
 		listener_thread.start()
+		update_GUI()
 		while True:
 			tick()
 	except KeyboardInterrupt:
 		print("Game interrupted, exiting...")
+		exit()
