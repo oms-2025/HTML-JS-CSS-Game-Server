@@ -12,3 +12,9 @@
   - added a top gui
   - scrolling works now
   - gui & main sync is good
+
+### v1.2
+- updates resource rates (they scale with depth)
+- added a log system
+- fixed save data synchroniztion
+- minor bugfixes
