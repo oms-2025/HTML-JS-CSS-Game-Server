@@ -26,3 +26,7 @@
 - fixed resource calculation
 - updated layer hardness equation to give a harder difficulty at first
 - added version verification
+
+### v1.4-alpha.2
+- added a file integrity script
+- minor bugfixes
