@@ -21,3 +21,8 @@
 
 ### v1.3-alpha
 - added a better log system
+
+### v1.4-alpha
+- fixed resource calculation
+- updated layer hardness equation to give a harder difficulty at first
+- added version verification
