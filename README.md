@@ -30,3 +30,8 @@
 ### v1.4-alpha.2
 - added a file integrity script
 - minor bugfixes
+
+### v1.4-beta
+- first beta release!
+- minor bugfixes with gui
+- updates the save templates
