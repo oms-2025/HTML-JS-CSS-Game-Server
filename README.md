@@ -35,3 +35,6 @@
 - first beta release!
 - minor bugfixes with gui
 - updates the save templates
+
+### v1.5-alpha
+- added 3 difficulty levels for layer hardness
