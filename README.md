@@ -38,3 +38,7 @@
 
 ### v1.5-alpha
 - added 3 difficulty levels for layer hardness
+
+### v1.5-alpha.2
+- added a save writer file
+- added 5000+ lines for a sprite system (image to ascii)
