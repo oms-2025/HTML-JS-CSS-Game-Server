@@ -2,6 +2,8 @@
 
 ## changelog:
 
+## v1.0-alpha - v1.5-alpha.3
+
 ### v1.0-alpha
 - created the base version (wip mrmine, clicker game)
 
@@ -42,3 +44,12 @@
 ### v1.5-alpha.2
 - added a save writer file
 - added 5000+ lines for a sprite system (image to ascii)
+
+### v1.5-alpha.3
+- updated the save structure to use multiple layers of encryption
+- added some more sprites
+- updated filepaths
+- revamped mineral system to include the full 57 minerals and isotopes
+- filled in some missing mineral values
+- VERSION 2.0 COMING SOON (this is last v1 release)
+
