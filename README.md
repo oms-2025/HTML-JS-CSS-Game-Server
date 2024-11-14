@@ -51,5 +51,5 @@
 - updated filepaths
 - revamped mineral system to include the full 57 minerals and isotopes
 - filled in some missing mineral values
-- VERSION 2.0 COMING SOON (this is last v1 release)
+### **VERSION 2.0 COMING SOON (this is last v1 release)**
 
