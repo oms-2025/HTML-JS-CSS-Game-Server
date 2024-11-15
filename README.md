@@ -53,4 +53,4 @@
 - filled in some missing mineral values
 
 ### **I WILL NOT RELEASE ANY MORE VERSION 1 RELEASES. EXPECT VERSION 2.0 TO RELEASE AROUND EARLY DECEMBER.**
-
+[**Countdown to Version 2.0**](https://www.timeanddate.com/countdown/to?iso=20241201T00&p0=%3A&msg=Version+2.0+Release&ud=1&font=sanserif)
