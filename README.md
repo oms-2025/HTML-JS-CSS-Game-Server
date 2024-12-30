@@ -2,8 +2,6 @@
 
 ## changelog:
 
-## v1.0-alpha - v1.5-alpha.3
-
 ### v1.0-alpha
 - created the base version (wip mrmine, clicker game)
 
@@ -52,4 +50,4 @@
 - revamped mineral system to include the full 57 minerals and isotopes
 - filled in some missing mineral values
 
-### **Expect V2 around January 2025**
+## ** V2 development has experienced some delays. Final release date is still TBD. **
