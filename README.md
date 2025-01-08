@@ -1,4 +1,4 @@
-# HTML/JS/CSS/PY Games Repository
+# HTML/JS/CSS Games Repository
 
 ### DISCLAIMER: These games are intended for your own personal entertainment. I *ABSOLUTELY* DO NOT recommend using these games during school hours.
 ### *IF YOU DO, I AM NOT RESPONSIBLE FOR ANY TROUBLE YOU MAY ENCOUNTER.*
