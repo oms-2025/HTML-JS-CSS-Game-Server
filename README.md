@@ -54,4 +54,4 @@
 - revamped mineral system to include the full 57 minerals and isotopes
 - filled in some missing mineral values
 
-## ** V2 development has experienced some delays. Final release date is still TBD. **
+## ** The entire repository is being updated; all the games will now use HTML5/JS/CSS strcuture instead of console & PY structure. Expect some delays in rewriting all the games to the new structure. The new games will be released with v2.0. **
