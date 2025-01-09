@@ -1,67 +1,32 @@
-<!-- filepath: /workspaces/coolmathgames/server-1.0/main/menu.html -->
-<?php
-session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $users = json_decode(file_get_contents('server-1.0/main/endusers.json'), true);
-
-    foreach ($users as $user) {
-        if ($user['username'] === $username && $user['password'] === $password) {
-            $_SESSION['user_loggedin'] = true;
-            break;
-        }
-    }
-
-    if (!isset($_SESSION['user_loggedin'])) {
-        $error = "Invalid credentials";
-    }
-}
-
-if (!isset($_SESSION['user_loggedin']) || $_SESSION['user_loggedin'] !== true) {
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
-    <link rel="stylesheet" href="server-1.0/main/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>User Login</h1>
-    <form method="POST" action="menu.html">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-    <?php if (isset($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
-</body>
-</html>
-<?php
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Menu</title>
-    <link rel="stylesheet" href="server-1.0/main/style.css">
-</head>
-<body>
-    <h1>Welcome to the Game Menu</h1>
-    <ul>
-        <li><a href="server-1.0/main/mrmine/index.html" class="button">Mr. Mine</a></li>
-        <li><a href="server-1.0/main/cookie-clicker/index.html" class="button">Cookie Clicker</a></li>
-        <li><a href="server-1.0/main/2048/index.html" class="button">2048</a></li>
-        <li><a href="server-1.0/main/dino-game/index.html" class="button">Chrome Dino Game</a></li>
-        <li><a href="server-1.0/main/ecclients/clients/select.html" class="button">EaglerCraft Client Select</a></li>
-        <li><a href="server-1.0/main/n-gon/index.html" class="button">n-gon</a></li>
-    </ul>
-
-    <script src="server-1.0/main/menu.js"></script>
+    <div id="loginScreen">
+        <h1>User Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginError" style="color:red;"></p>
+    </div>
+    <div id="gameMenu" style="display:none;">
+        <h1>Welcome to the Game Menu</h1>
+        <ul>
+            <li><a href="mrmine/index.html" class="button">Mr. Mine</a></li>
+            <li><a href="cookie-clicker/index.html" class="button">Cookie Clicker</a></li>
+            <li><a href="2048/index.html" class="button">2048</a></li>
+            <li><a href="dino-game/index.html" class="button">Chrome Dino Game</a></li>
+            <li><a href="ecclients/clients/select.html" class="button">EaglerCraft Client Select</a></li>
+            <li><a href="n-gon/index.html" class="button">n-gon</a></li>
+        </ul>
+    </div>
+    <script src="menu.js"></script>
 </body>
 </html>

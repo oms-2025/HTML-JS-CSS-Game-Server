@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server Control</title>
-    <link rel="stylesheet" href="server-1.0/main/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         titlet {
             text-align: center;
@@ -24,23 +24,16 @@
     </style>
 </head>
 <body>
-    <?php
-    session_start();
-    if (!isset($_SESSION['admin_loggedin']) || $_SESSION['admin_loggedin'] !== true) {
-    ?>
     <div id="loginScreen">
         <heading1>Login</heading1>
-        <form id="loginForm" action="admin_login.php" method="POST">
+        <form id="loginForm">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <?php if (isset($_GET['error'])) { echo "<p style='color:red;'>Invalid credentials</p>"; } ?>
+        <p id="loginError" style="color:red;"></p>
     </div>
-    <?php
-    } else {
-    ?>
-    <div id="controlPanel">
+    <div id="controlPanel" style="display:none;">
         <heading1>Server Control Interface</heading1>
         <div class="button-container">
             <button id="startServer" class="button server-button green">Start Server</button>
@@ -54,11 +47,9 @@
                 <button type="button" id="blockIp">Block IP</button>
                 <button type="button" id="unblockIp">Unblock IP</button>
             </form>
+            <ul id="ipList"></ul>
         </div>
     </div>
-    <script src="server-1.0/main/server.js"></script>
-    <?php
-    }
-    ?>
+    <script src="server.js"></script>
 </body>
 </html>

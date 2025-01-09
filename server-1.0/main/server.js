@@ -12,6 +12,7 @@ let serverProcess = null;
 let ipAddresses = [];
 let blockedIps = [];
 const clients = new Map();
+const activeUsers = new Map(); // Map to store active users and their IP addresses
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -44,7 +45,13 @@ app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(user => user.username === username);
     if (user && user.password === password) {
-        res.json({ success: true });
+        if (activeUsers.has(username)) {
+            res.send('<html><body><h1>This username is already in use.</h1></body></html>');
+        } else {
+            const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+            activeUsers.set(username, ip);
+            res.json({ success: true });
+        }
     } else {
         res.json({ success: false });
     }
@@ -102,9 +109,10 @@ app.use((req, res, next) => {
     }
 });
 
-// Get IP addresses
+// Get IP addresses and associated usernames
 app.get('/ip-addresses', (req, res) => {
-    res.json(ipAddresses);
+    const ipUsernames = Array.from(activeUsers.entries()).map(([username, ip]) => ({ ip, username }));
+    res.json(ipUsernames);
 });
 
 // Get current user's IP address
@@ -148,6 +156,13 @@ wss.on('connection', (ws, req) => {
 
     ws.on('close', () => {
         clients.delete(ip);
+        // Remove the user from activeUsers map when they disconnect
+        for (const [username, userIp] of activeUsers.entries()) {
+            if (userIp === ip) {
+                activeUsers.delete(username);
+                break;
+            }
+        }
     });
 });
 
@@ -156,6 +171,30 @@ app.get('/server/main/server.js', (req, res) => {
     res.type('.js');
     res.send(`
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                fetch('/admin-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('loginScreen').style.display = 'none';
+                        document.getElementById('controlPanel').style.display = 'block';
+                    } else {
+                        document.getElementById('loginError').textContent = 'Invalid credentials.';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+
             document.getElementById('startServer').addEventListener('click', function() {
                 fetch('/start-server', {
                     method: 'POST'
@@ -177,6 +216,18 @@ app.get('/server/main/server.js', (req, res) => {
             document.getElementById('blockIpButton').addEventListener('click', function() {
                 const blockIpMenu = document.getElementById('blockIpMenu');
                 blockIpMenu.style.display = blockIpMenu.style.display === 'none' ? 'block' : 'none';
+                fetch('/ip-addresses')
+                    .then(response => response.json())
+                    .then(data => {
+                        const ipList = document.getElementById('ipList');
+                        ipList.innerHTML = '';
+                        data.forEach(({ ip, username }) => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = \`IP: \${ip}, Username: \${username}\`;
+                            ipList.appendChild(listItem);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
             });
 
             document.getElementById('blockIp').addEventListener('click', function() {
