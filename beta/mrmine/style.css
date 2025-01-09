@@ -1,0 +1,65 @@
+red {
+    font-family: 'Trebuchet MS';
+    color: rgb(200, 0, 0);
+}
+orange {
+    font-family: 'Trebuchet MS';
+    color: rgb(200, 100, 0);
+}
+yellow {
+    font-family: 'Trebuchet MS';
+    color: rgb(200, 200, 0);
+}
+green {
+    font-family: 'Trebuchet MS';
+    color: rgb(0, 200, 0);
+}
+cyan {
+    font-family: 'Trebuchet MS';
+    color: rgb(0, 200, 200);
+}
+blue {
+    font-family: 'Trebuchet MS';
+    color: rgb(0, 0, 200);
+}
+purple {
+    font-family: 'Trebuchet MS';
+    color: rgb(200, 0, 200);
+}
+white {
+    font-family: 'Trebuchet MS';
+    color: rgb(255, 255, 255);
+}
+gray {
+    font-family: 'Trebuchet MS';
+    color: rgb(128, 128, 128);
+}
+black {
+    font-family: 'Trebuchet MS';
+    color: rgb(0, 0, 0);
+}
+xs {
+    font-family: 'Trebuchet MS';
+    font-size: 10px;
+}
+sm {
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+}
+m {
+    font-family: 'Trebuchet MS';
+    font-size: 30px;
+}
+l {
+    font-family: 'Trebuchet MS';
+    font-size: 40px;
+}
+xl {
+    font-family: 'Trebuchet MS';
+    font-size: 50px;
+}
+normal {
+    font-family: 'Trebuchet MS';
+    font-size: 30px;
+    color: rgb(0, 0, 0)
+}
