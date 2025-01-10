@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Control</title>
+    <link rel="stylesheet" href="server-1.1/main/style.css">
+    <style>
+        titlet {
+            text-align: center;
+            font-family: "Trebuchet MS";
+            font-size: 50px;
+        }
+        heading1 {
+            text-align: center;
+            font-family: "Trebuchet MS";
+            font-size: 40px;
+        }
+        heading2 {
+            text-align: center;
+            font-family: "Trebuchet MS";
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginScreen">
+        <heading1>Login</heading1>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginError" style="color:red;"></p>
+    </div>
+    <div id="controlPanel" style="display:none;">
+        <heading1>Server Control Interface</heading1>
+        <div class="button-container">
+            <button id="startServer" class="button server-button green">Start Server</button>
+            <button id="stopServer" class="button server-button red">Stop Server</button>
+        </div>
+        <button id="blockIpButton" class="button server-button">Block/Unblock IP</button>
+        <div id="blockIpMenu" style="display: none;">
+            <heading2>Block/Unblock IP Addresses</heading2>
+            <form id="blockIpForm">
+                <input type="text" id="ipAddress" name="ipAddress" placeholder="IP Address" required>
+                <button type="button" id="blockIp">Block IP</button>
+                <button type="button" id="unblockIp">Unblock IP</button>
+            </form>
+            <ul id="ipList"></ul>
+        </div>
+        <div>
+            <heading2>Change Server Port</heading2>
+            <input type="text" id="newPort" name="newPort" placeholder="New Port" required>
+            <button type="button" id="changePort">Change Port</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                fetch('/admin-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('loginScreen').style.display = 'none';
+                        document.getElementById('controlPanel').style.display = 'block';
+                    } else {
+                        document.getElementById('loginError').textContent = 'Invalid credentials.';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('startServer').addEventListener('click', function() {
+                fetch('/start-server', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('stopServer').addEventListener('click', function() {
+                fetch('/stop-server', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('blockIpButton').addEventListener('click', function() {
+                const blockIpMenu = document.getElementById('blockIpMenu');
+                blockIpMenu.style.display = blockIpMenu.style.display === 'none' ? 'block' : 'none';
+                fetch('/ip-addresses')
+                    .then(response => response.json())
+                    .then(data => {
+                        const ipList = document.getElementById('ipList');
+                        ipList.innerHTML = '';
+                        data.forEach(({ ip, username }) => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `IP: ${ip}, Username: ${username}`;
+                            ipList.appendChild(listItem);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('blockIp').addEventListener('click', function() {
+                const ipAddress = document.getElementById('ipAddress').value;
+                const adminUsername = document.getElementById('username').value; // Get the admin username
+                fetch('/block-ips', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ips: [ipAddress], adminUsername })
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('unblockIp').addEventListener('click', function() {
+                const ipAddress = document.getElementById('ipAddress').value;
+                fetch('/unblock-ips', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ips: [ipAddress] })
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            });
+
+            document.getElementById('changePort').addEventListener('click', function() {
+                const newPort = document.getElementById('newPort').value;
+                fetch('/change-port', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newPort })
+                })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+</html>
