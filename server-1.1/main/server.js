@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const fs = require('fs');
 const { exec } = require('child_process');
 const WebSocket = require('ws');
+const os = require('os');
 
 const app = express();
 let port = 3000; // Make port variable to allow changes
@@ -166,6 +167,20 @@ app.post('/block-ips', (req, res) => {
 app.post('/unblock-ips', (req, res) => {
     blockedIps = blockedIps.filter(ip => !req.body.ips.includes(ip));
     res.send('IP addresses unblocked');
+});
+
+// Endpoint to get system stats
+app.get('/system-stats', (req, res) => {
+    const cpuUsage = os.loadavg()[0]; // 1-minute load average
+    const totalMem = os.totalmem();
+    const freeMem = os.freemem();
+    const usedMem = totalMem - freeMem;
+    const usedMemMB = Math.round(usedMem / 1024 / 1024);
+
+    res.json({
+        cpu: Math.round(cpuUsage * 100 / os.cpus().length), // Convert load average to percentage
+        ram: usedMemMB
+    });
 });
 
 // Function to start the server
