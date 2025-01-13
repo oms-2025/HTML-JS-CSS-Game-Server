@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const password = 'insertpassword';
+const password = 'maple_yt2024';
 
 bcrypt.hash(password, 10, (err, hash) => {
     if (err) {
