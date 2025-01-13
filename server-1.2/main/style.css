@@ -1,0 +1,58 @@
+button, .button {
+    background-color: blue;
+    width: 75%;
+    height: 50px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px; /* Vertically center text */
+    text-decoration: none; /* Remove underline from links */
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 8%;
+}
+
+.button {
+    width: 40%;
+    height: 100px; /* 2:1 ratio for width:height */
+    font-size: 20px; /* Adjust font size to fit the button */
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 100px; /* Vertically center text */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.menu-button {
+    background-color: blue;
+}
+
+.menu-button:hover {
+    background-color: darkblue;
+}
+
+.server-button.green {
+    background-color: green;
+}
+
+.server-button.red {
+    background-color: red;
+}
+
+.server-button:hover {
+    opacity: 0.8;
+}
