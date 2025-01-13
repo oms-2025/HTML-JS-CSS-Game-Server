@@ -1,6 +1,3 @@
-function ajax(url,callback){
-	var ajaxRequest;
-	try{ajaxRequest = new XMLHttpRequest();} catch (e){try{ajaxRequest=new ActiveXObject('Msxml2.XMLHTTP');} catch (e) {try{ajaxRequest=new ActiveXObject('Microsoft.XMLHTTP');} catch (e){alert("Something broke!");return false;}}}
-	if (callback){ajaxRequest.onreadystatechange=function(){if(ajaxRequest.readyState==4){callback(ajaxRequest.responseText);}}}
-	ajaxRequest.open('GET',url+'&nocache='+(new Date().getTime()),true);ajaxRequest.send(null);
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:253ec58ad29da5015fa2c6606dcdca849daf04a082678e6e275c601e3be7d248
+size 494
