@@ -45,12 +45,24 @@ body {
     background-color: darkblue;
 }
 
+.menu-button:hover {
+    opacity: 0.85;
+}
+
 .server-button.green {
     background-color: green;
 }
 
+.server-button.green:hover {
+    background-color: darkgreen;
+}
+
 .server-button.red {
     background-color: red;
+}
+
+.server-button.red:hover {
+    background-color: darkred;
 }
 
 .server-button:hover {
