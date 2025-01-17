@@ -10,6 +10,7 @@ button, .button {
     cursor: pointer;
     display: inline-block;
     text-align: center;
+    font-family: 'Trebuchet MS';
     line-height: 50px; /* Vertically center text */
     text-decoration: none; /* Remove underline from links */
 }
@@ -33,6 +34,7 @@ body {
     border: none;
     cursor: pointer;
     text-align: center;
+    font-family: 'Trebuchet MS';
     line-height: 100px; /* Vertically center text */
     text-decoration: none; /* Remove underline from links */
 }
