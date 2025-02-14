@@ -1,14 +1,14 @@
 [
     {
         "username": "alexd",
-        "password": "bt2"
+        "password": "$2b$10$hPy5GkiQ.07GI4BiN43n7uv7SnFfZ.X6fZjJFWToND4RE5wKDiLtK"
     },
     {
         "username": "tejs",
-        "password": "bt3"
+        "password": "$2b$10$Ol3R/K4JWmNkaQ2TAbq38.DjLroS5IoyxZY2zwrx1K2Al3l.KOFje"
     },
     {
         "username": "alexo",
-        "password": "bt1"
+        "password": "$2b$10$NgXW6eW3WSht3gw7qnChp.kPdtMuaRE.g5wx72VmfDV59C950G21K"
     }
 ]
