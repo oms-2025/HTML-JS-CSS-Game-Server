@@ -3,7 +3,8 @@
 ### DISCLAIMER: These games are intended for your own personal entertainment. I *ABSOLUTELY* DO NOT recommend using these games during school hours.
 
 ## changelog:
-
+<details>
+<summary>Previous updates</summary>
 ### v1.0-alpha
 - created the base version (wip mrmine, clicker game)
 
@@ -51,5 +52,6 @@
 - updated filepaths
 - revamped mineral system to include the full 57 minerals and isotopes
 - filled in some missing mineral values
+</details>
 
-## ** The entire repository is being updated; all the games will now use HTML5/JS/CSS strcuture instead of console & PY structure. Expect some delays in rewriting all the games to the new structure. The new games will be released with v2.0. **
+### ws_v1.2-beta.1
