@@ -55,3 +55,5 @@
 </details>
 
 ### ws_v1.2-beta.1
+- installed axios and added a proxy service
+- resolved push errors
