@@ -39,3 +39,9 @@ Add any other context about the problem here.
 
 **Priority**
 Provide information about how urgent this issue is.
+
+**Contact**
+Provide your email if you would like this topic to be discussed privately.
+
+**Recent changes**
+Provide any changes you have made to your device / network recently (e.g. changing firewall settings, etc.)
