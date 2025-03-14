@@ -1,7 +1,5 @@
 # HTML/JS/CSS Games Repository
 
-### DISCLAIMER: These games are intended for your own personal entertainment. I *ABSOLUTELY* DO NOT recommend using these games during school hours.
-
 ## changelog:
 <details>
 <summary>Previous updates</summary>
