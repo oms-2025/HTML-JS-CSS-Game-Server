@@ -21,3 +21,9 @@ Add any other context or screenshots about the feature request here.
 
 **Priority**
 Provide information about how urgent this issue is.
+
+**Contact**
+Provide your email if you would like this topic to be discussed privately.
+
+**Recent changes**
+Provide any changes you have made to your device / network recently (e.g. changing firewall settings, etc.)
